@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Dimension Labs - Innovator Application",
+  "description": "A refined, professional landing page for Dimension Labs featuring a mint and beige aesthetic with a comprehensive innovator application form.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
