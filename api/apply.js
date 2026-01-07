@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     const auth = new google.auth.JWT(
       creds.client_email,
       null,
-      creds.private_key.replace(/\\n/g, "\n"),
+      creds.private_key,
       ["https://www.googleapis.com/auth/spreadsheets"]
     );
 
