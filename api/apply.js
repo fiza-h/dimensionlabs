@@ -2,29 +2,24 @@ import { google } from "googleapis";
 
 export default async function handler(req, res) {
   try {
-    console.log("▶️ API HIT");
-
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed" });
     }
 
-    if (!process.env.GOOGLE_CREDENTIALS) {
-      throw new Error("GOOGLE_CREDENTIALS missing");
+    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+    console.log("📧 SERVICE EMAIL:", clientEmail);
+    console.log("🔑 KEY LENGTH:", privateKey?.length);
+
+    if (!clientEmail || !privateKey) {
+      throw new Error("Google credentials missing");
     }
-
-    if (!process.env.SPREADSHEET_ID) {
-      throw new Error("SPREADSHEET_ID missing");
-    }
-
-    const creds = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-
-    console.log("✅ ENV OK");
-    console.log("📧 SERVICE EMAIL:", creds.client_email);
 
     const auth = new google.auth.JWT(
-      creds.client_email,
-      null,
-      creds.private_key,
+      clientEmail,
+      undefined,
+      privateKey.replace(/\\n/g, "\n"),
       ["https://www.googleapis.com/auth/spreadsheets"]
     );
 
@@ -34,7 +29,6 @@ export default async function handler(req, res) {
     const sheets = google.sheets({ version: "v4", auth });
 
     const body = req.body || {};
-    console.log("📦 BODY:", body);
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
@@ -55,13 +49,10 @@ export default async function handler(req, res) {
     });
 
     console.log("✅ ROW APPENDED");
-
     return res.status(200).json({ success: true });
+
   } catch (err) {
     console.error("❌ APPLY ERROR FULL:", err);
-    return res.status(500).json({
-      error: err.message,
-      stack: err.stack,
-    });
+    return res.status(500).json({ error: err.message });
   }
 }
