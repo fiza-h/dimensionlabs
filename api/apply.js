@@ -2,22 +2,10 @@ import { google } from "googleapis";
 
 export default async function handler(req, res) {
   try {
+    console.log("▶️ API HIT");
+
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed" });
-    }
-
-    const {
-      name,
-      email,
-      college,
-      city,
-      linkedin,
-      cv_link,
-      video_link,
-    } = req.body || {};
-
-    if (!name || !email || !cv_link || !video_link) {
-      return res.status(400).json({ error: "Missing required fields" });
     }
 
     if (!process.env.GOOGLE_CREDENTIALS) {
@@ -28,12 +16,25 @@ export default async function handler(req, res) {
       throw new Error("SPREADSHEET_ID missing");
     }
 
-    const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-    });
+    const creds = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
+    console.log("✅ ENV OK");
+    console.log("📧 SERVICE EMAIL:", creds.client_email);
+
+    const auth = new google.auth.JWT(
+      creds.client_email,
+      null,
+      creds.private_key.replace(/\\n/g, "\n"),
+      ["https://www.googleapis.com/auth/spreadsheets"]
+    );
+
+    await auth.authorize();
+    console.log("✅ AUTHORIZED");
 
     const sheets = google.sheets({ version: "v4", auth });
+
+    const body = req.body || {};
+    console.log("📦 BODY:", body);
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
@@ -41,21 +42,26 @@ export default async function handler(req, res) {
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [[
-          name,
-          email,
-          college || "",
-          city || "",
-          linkedin || "",
-          cv_link,
-          video_link,
+          body.name,
+          body.email,
+          body.college || "",
+          body.city || "",
+          body.linkedin || "",
+          body.cv_link,
+          body.video_link,
           new Date().toISOString(),
         ]],
       },
     });
 
+    console.log("✅ ROW APPENDED");
+
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error("❌ APPLY ERROR:", err.message);
-    return res.status(500).json({ error: err.message });
+    console.error("❌ APPLY ERROR FULL:", err);
+    return res.status(500).json({
+      error: err.message,
+      stack: err.stack,
+    });
   }
 }
