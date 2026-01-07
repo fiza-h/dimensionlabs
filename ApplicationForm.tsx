@@ -1,77 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const ApplicationForm: React.FC = () => {
-    const [formData, setFormData] = useState<{
-        name: string;
-        email: string;
-        college: string;
-        city: string;
-        linkedin: string;
-        cv: File | null;
-        video: File | null;
-    }>({
-        name: '',
-        email: '',
-        college: '',
-        city: '',
-        linkedin: '',
-        cv: null,
-        video: null,
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        college: "",
+        city: "",
+        linkedin: "",
+        cvLink: "",
+        videoLink: "",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, files } = e.target;
-        if (files) {
-            setFormData(prev => ({ ...prev, [name]: files[0] }));
-        } else {
-            setFormData(prev => ({ ...prev, [name]: value }));
-        }
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
+
+    const isValidDriveLink = (url: string) =>
+        url.includes("drive.google.com");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        if (!isValidDriveLink(formData.cvLink)) {
+            alert("Please provide a valid Google Drive link for your CV.");
+            return;
+        }
+
+        if (!isValidDriveLink(formData.videoLink)) {
+            alert("Please provide a valid Google Drive link for your video.");
+            return;
+        }
+
         try {
-            const response = await fetch('http://localhost:3001/api/apply', {
-                method: 'POST',
+            const response = await fetch("/api/apply", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    ...formData,
-                    cv: formData.cv ? formData.cv.name : 'No file',
-                    video: formData.video ? formData.video.name : 'No file'
+                    name: formData.name,
+                    email: formData.email,
+                    college: formData.college,
+                    city: formData.city,
+                    linkedin: formData.linkedin,
+                    cv_link: formData.cvLink,
+                    video_link: formData.videoLink,
                 }),
             });
 
+
+
             if (response.ok) {
-                alert('Thank you for applying! We will be in touch.');
+                alert("Thank you for applying! We will be in touch.");
                 setFormData({
-                    name: '',
-                    email: '',
-                    college: '',
-                    city: '',
-                    linkedin: '',
-                    cv: null,
-                    video: null,
+                    name: "",
+                    email: "",
+                    college: "",
+                    city: "",
+                    linkedin: "",
+                    cvLink: "",
+                    videoLink: "",
                 });
             } else {
-                alert('Something went wrong. Please try again.');
+                alert("Something went wrong. Please try again.");
             }
         } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('Error submitting form. Please check your connection.');
+            console.error("Error submitting form:", error);
+            alert("Error submitting form. Please check your connection.");
         }
     };
 
     return (
-        <div className="container" style={{ maxWidth: '600px', marginTop: '4rem' }}>
-            <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: "600px", marginTop: "4rem" }}>
+            <header style={{ marginBottom: "3rem", textAlign: "center" }}>
                 <h2>Application</h2>
                 <p className="text-subtle">Spring 2026 Venture Growth Fellowship</p>
             </header>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* UNCHANGED TEXT FIELDS */}
                 <div>
                     <label className="text-caps block mb-1">Full Name</label>
                     <input
@@ -137,40 +145,56 @@ const ApplicationForm: React.FC = () => {
                     />
                 </div>
 
-                <div style={{ marginTop: '1rem' }}>
-                    <label className="text-caps block mb-1">CV / Resume (PDF)</label>
+                {/* CV LINK (REPLACED FILE INPUT) */}
+                <div style={{ marginTop: "1rem" }}>
+                    <label className="text-caps block mb-1">CV / Resume</label>
                     <input
-                        type="file"
-                        name="cv"
-                        accept=".pdf"
+                        type="url"
+                        name="cvLink"
+                        value={formData.cvLink}
                         onChange={handleChange}
+                        className="input-minimal w-full"
                         required
-                        style={{ padding: '0.5rem 0' }}
+                        placeholder="https://drive.google.com/..."
                     />
+                    <p className="text-subtle text-mono" style={{ fontSize: "0.8rem" }}>
+                        Upload your CV to Google Drive and share the link (view access).
+                    </p>
                 </div>
 
-                <div style={{ marginTop: '1rem' }}>
+                {/* VIDEO LINK (REPLACED FILE INPUT) */}
+                <div style={{ marginTop: "1rem" }}>
                     <label className="text-caps block mb-1">Video Pitch (1 min max)</label>
-                    <p className="text-subtle text-mono" style={{ fontSize: '0.8rem', marginBottom: '0.5rem' }}>
+                    <p
+                        className="text-subtle text-mono"
+                        style={{ fontSize: "0.8rem", marginBottom: "0.5rem" }}
+                    >
                         Convince us you belong here. Be creative.
                     </p>
                     <input
-                        type="file"
-                        name="video"
-                        accept="video/*"
+                        type="url"
+                        name="videoLink"
+                        value={formData.videoLink}
                         onChange={handleChange}
+                        className="input-minimal w-full"
                         required
-                        style={{ padding: '0.5rem 0' }}
+                        placeholder="https://drive.google.com/..."
                     />
                 </div>
 
-                <button type="submit" className="btn-primary" style={{ marginTop: '2rem' }}>
+                <button type="submit" className="btn-primary" style={{ marginTop: "2rem" }}>
                     Submit Application
                 </button>
             </form>
 
-            <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-                <a href="/" className="text-subtle text-mono" style={{ textDecoration: 'underline' }}>&larr; Back to Home</a>
+            <div style={{ marginTop: "2rem", textAlign: "center" }}>
+                <a
+                    href="/"
+                    className="text-subtle text-mono"
+                    style={{ textDecoration: "underline" }}
+                >
+                    ← Back to Home
+                </a>
             </div>
         </div>
     );
