@@ -16,17 +16,19 @@ export default async function handler(req, res) {
       throw new Error("Google credentials missing");
     }
 
-    const auth = new google.auth.JWT(
-      clientEmail,
-      undefined,
-      privateKey.replace(/\\n/g, "\n"),
-      ["https://www.googleapis.com/auth/spreadsheets"]
-    );
+    // 🔑 THIS IS THE KEY CHANGE
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: clientEmail,
+        private_key: privateKey.replace(/\\n/g, "\n"),
+      },
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
 
-    await auth.authorize();
-    console.log("✅ AUTHORIZED");
-
-    const sheets = google.sheets({ version: "v4", auth });
+    const sheets = google.sheets({
+      version: "v4",
+      auth: await auth.getClient(),
+    });
 
     const body = req.body || {};
 
