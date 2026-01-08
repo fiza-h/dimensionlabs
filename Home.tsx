@@ -32,7 +32,7 @@ const Home: React.FC = () => {
                 </p>
 
                 <div style={{ marginTop: '2rem' }}>
-                    <a href="/apply" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
+                    <a href="https://form.typeform.com/to/aJJBintZ" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
                 </div>
             </header>
 
@@ -211,7 +211,7 @@ const Home: React.FC = () => {
                         </ul>
                     </div>
 
-                    <a href="/apply" className="btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>Start Application [Apply]</a>
+                    <a href="https://form.typeform.com/to/aJJBintZ" className="btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>Start Application [Apply]</a>
                 </div>
 
                 <p className="text-subtle text-caps" style={{ marginTop: '2rem' }}>
