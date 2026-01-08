@@ -13,7 +13,8 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Spacing */
-  --container-width: 800px; /* Narrow central column like pi.website */
+  --container-width: 800px;
+  /* Narrow central column like pi.website */
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
@@ -30,7 +31,8 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-mono); /* Body text is monospace */
+  font-family: var(--font-mono);
+  /* Body text is monospace */
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -38,9 +40,15 @@ body {
 }
 
 /* Typography Overrides */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
-  font-weight: 400; /* Regular weight often looks more elegant for serifs */
+  font-weight: 400;
+  /* Regular weight often looks more elegant for serifs */
   line-height: 1.2;
   margin-bottom: var(--spacing-sm);
 }
@@ -64,7 +72,8 @@ h3 {
 
 p {
   margin-bottom: var(--spacing-md);
-  max-width: 65ch; /* Optimal specific line length */
+  max-width: 65ch;
+  /* Optimal specific line length */
 }
 
 a {
@@ -92,7 +101,8 @@ a:hover {
 }
 
 /* Component: Lists */
-ul, ol {
+ul,
+ol {
   margin-bottom: var(--spacing-md);
   padding-left: var(--spacing-md);
 }
@@ -190,12 +200,18 @@ li {
   .grid-cols-2 {
     grid-template-columns: 1fr;
   }
-  
+
   :root {
     --spacing-xl: 4rem;
   }
-  
+
   h1 {
     font-size: 2.5rem;
+  }
+
+  .program-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

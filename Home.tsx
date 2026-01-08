@@ -33,6 +33,9 @@ const Home: React.FC = () => {
 
                 <div style={{ marginTop: '2rem' }}>
                     <a href="https://form.typeform.com/to/aJJBintZ" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
+                    <p className="text-subtle text-mono" style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
+                        Applications close: Jan 30th, 2026 — 11:59 PM PT
+                    </p>
                 </div>
             </header>
 
@@ -146,19 +149,19 @@ const Home: React.FC = () => {
             <section className="section">
                 <h2>Program details</h2>
                 <div style={{ borderTop: '1px solid black' }}>
-                    <div className="flex justify-between" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
+                    <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Timeline</span>
                         <span className="text-mono">Mid-January to late April 2026 (~14 weeks)</span>
                     </div>
-                    <div className="flex justify-between" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
+                    <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Time Commitment</span>
                         <span className="text-mono">5–8 hours/week (flexible)</span>
                     </div>
-                    <div className="flex justify-between" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
+                    <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Format</span>
                         <span className="text-mono">Remote-first (US time zones)</span>
                     </div>
-                    <div className="flex justify-between" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
+                    <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Eligibility</span>
                         <span className="text-mono">US-based students / plugged into US ecosystem</span>
                     </div>
@@ -206,7 +209,7 @@ const Home: React.FC = () => {
                     <div style={{ margin: '2rem 0', textAlign: 'left' }}>
                         <p className="text-caps">Deadlines</p>
                         <ul className="text-mono" style={{ listStyle: 'none', padding: 0 }}>
-                            <li>Applications close: Jan 21st, 2026 — 11:59 PM PT</li>
+                            <li>Applications close: Jan 30th, 2026 — 11:59 PM PT</li>
                             <li>Final round: 15-minute Zoom conversation</li>
                         </ul>
                     </div>
