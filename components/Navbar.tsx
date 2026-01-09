@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
         <span className="text-serif" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
           Dimension Labs
         </span>
-        <Link to="https://form.typeform.com/to/aJJBintZ" className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.75rem' }}>
+        <Link to="https://docs.google.com/forms/d/e/1FAIpQLScBicV_sE4grM4DE9lPmb-st9jf8KXcZ0eGAv5hgaw8zvkNRQ/viewform" className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.75rem' }}>
           Apply &rarr;
         </Link>
       </div>

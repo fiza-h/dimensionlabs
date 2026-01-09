@@ -32,7 +32,7 @@ const Home: React.FC = () => {
                 </p>
 
                 <div style={{ marginTop: '2rem' }}>
-                    <a href="https://form.typeform.com/to/aJJBintZ" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScBicV_sE4grM4DE9lPmb-st9jf8KXcZ0eGAv5hgaw8zvkNRQ/viewform" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
                     <p className="text-subtle text-mono" style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
                         Applications close: Jan 30th, 2026 — 11:59 PM PT
                     </p>
@@ -214,7 +214,7 @@ const Home: React.FC = () => {
                         </ul>
                     </div>
 
-                    <a href="https://form.typeform.com/to/aJJBintZ" className="btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>Start Application [Apply]</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScBicV_sE4grM4DE9lPmb-st9jf8KXcZ0eGAv5hgaw8zvkNRQ/viewform" className="btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>Start Application [Apply]</a>
                 </div>
 
                 <p className="text-subtle text-caps" style={{ marginTop: '2rem' }}>
