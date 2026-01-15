@@ -151,7 +151,7 @@ const Home: React.FC = () => {
                 <div style={{ borderTop: '1px solid black' }}>
                     <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Timeline</span>
-                        <span className="text-mono">Mid-January to late April 2026 (~14 weeks)</span>
+                        <span className="text-mono">Early February to Late May 2026 (~16 weeks)</span>
                     </div>
                     <div className="flex justify-between program-row" style={{ padding: '1rem 0', borderBottom: '1px solid #ddd' }}>
                         <span className="text-caps">Time Commitment</span>
@@ -200,11 +200,7 @@ const Home: React.FC = () => {
                 <h2>How to apply</h2>
 
                 <div style={{ border: '1px solid black', padding: '2rem', marginTop: '2rem' }}>
-                    <h3>The Challenge</h3>
-                    <p className="text-mono">Record a 1-minute (max) video convincing us you belong in this cohort.</p>
-                    <p className="text-subtle" style={{ fontSize: '0.9rem' }}>
-                        You yourself are the ‘product’ here. We want to test how do you ‘sell yourself’. Be as creative as you want.
-                    </p>
+
 
                     <div style={{ margin: '2rem 0', textAlign: 'left' }}>
                         <p className="text-caps">Deadlines</p>
