@@ -34,7 +34,7 @@ const Home: React.FC = () => {
                 <div style={{ marginTop: '2rem' }}>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScBicV_sE4grM4DE9lPmb-st9jf8KXcZ0eGAv5hgaw8zvkNRQ/viewform" className="btn-primary">Apply to Spring 2026 Fellowship &rarr;</a>
                     <p className="text-subtle text-mono" style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
-                        Applications close: Jan 30th, 2026 — 11:59 PM PT
+                        Applications close: Feb 10th, 2026 — 11:59 PM PT
                     </p>
                 </div>
             </header>
@@ -205,7 +205,7 @@ const Home: React.FC = () => {
                     <div style={{ margin: '2rem 0', textAlign: 'left' }}>
                         <p className="text-caps">Deadlines</p>
                         <ul className="text-mono" style={{ listStyle: 'none', padding: 0 }}>
-                            <li>Applications close: Jan 30th, 2026 — 11:59 PM PT</li>
+                            <li>Applications close: Feb 10th, 2026 — 11:59 PM PT</li>
                             <li>Final round: 15-minute Zoom conversation</li>
                         </ul>
                     </div>
